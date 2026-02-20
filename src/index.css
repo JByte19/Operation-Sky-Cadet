@@ -1,0 +1,28 @@
+@import "tailwindcss";
+
+@theme {
+  --color-navy: #0a0e17;
+  --color-af-blue: #5d8aa8;
+  --color-gold: #ffd700;
+  --color-saffron: #ff9933;
+  --font-orbitron: "Orbitron", sans-serif;
+  --font-montserrat: "Montserrat", sans-serif;
+}
+
+@layer base {
+  body {
+    background-color: var(--color-navy);
+    color: white;
+    font-family: var(--font-montserrat);
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+    user-select: none;
+    -webkit-user-select: none;
+  }
+  
+  h1, h2, h3, h4, h5, h6 {
+    font-family: var(--font-orbitron);
+    letter-spacing: 0.05em;
+  }
+}
