@@ -353,8 +353,6 @@ const EnemyUnit = ({
 }) => {
     const ref = useRef<THREE.Group>(null);
 
-    const entranceRef = useRef(0);
-
     // Register ref on mount
     useEffect(() => {
         registerRef(ref.current);
@@ -362,54 +360,36 @@ const EnemyUnit = ({
     }, [registerRef]);
 
     // Flight patterns
-    useFrame((state, delta) => {
+    useFrame((state) => {
         if (!ref.current || destroyed) return;
-
-        // Entrance animation logic
-        if (entranceRef.current < 1) {
-            entranceRef.current += delta * 1.5; // Complete in ~0.66s
-        }
-        const intro = Math.min(entranceRef.current, 1);
-        const easeOut = 1 - Math.pow(1 - intro, 3); // Cubic ease out
-
         const t = state.clock.elapsedTime;
-        let targetX = 0, targetY = 0, targetZ = -8, targetRotZ = 0;
 
         switch (enemy.type) {
             case 'scout':
-                targetX = Math.sin(t * 3) * 4;
-                targetY = Math.cos(t * 2) * 1.5 + 1;
-                targetZ = -8;
-                targetRotZ = -Math.cos(t * 3) * 0.3;
+                ref.current.position.x = Math.sin(t * 3) * 4;
+                ref.current.position.y = Math.cos(t * 2) * 1.5 + 1;
+                ref.current.position.z = -8;
+                ref.current.rotation.z = -Math.cos(t * 3) * 0.3;
                 break;
             case 'bomber':
-                targetX = Math.sin(t * 1.2) * 3;
-                targetY = Math.sin(t * 0.8) * 0.8 - 0.5;
-                targetZ = -10;
-                targetRotZ = -Math.cos(t * 1.2) * 0.15;
+                ref.current.position.x = Math.sin(t * 1.2) * 3;
+                ref.current.position.y = Math.sin(t * 0.8) * 0.8 - 0.5;
+                ref.current.position.z = -10;
+                ref.current.rotation.z = -Math.cos(t * 1.2) * 0.15;
                 break;
             case 'ace':
-                targetX = Math.sin(t * 4) * 3 + Math.cos(t * 2.5) * 1.5;
-                targetY = Math.cos(t * 3) * 2;
-                targetZ = -7;
-                targetRotZ = -Math.cos(t * 4) * 0.4;
+                ref.current.position.x =
+                    Math.sin(t * 4) * 3 + Math.cos(t * 2.5) * 1.5;
+                ref.current.position.y = Math.cos(t * 3) * 2;
+                ref.current.position.z = -7;
+                ref.current.rotation.z = -Math.cos(t * 4) * 0.4;
                 break;
         }
-
-        // Apply smooth fly-in from distance and grow to full size
-        const startZ = -40;
-        ref.current.position.x = targetX;
-        ref.current.position.y = targetY;
-        ref.current.position.z = startZ + (targetZ - startZ) * easeOut;
-        ref.current.rotation.z = targetRotZ;
-
-        // Scale from 0 to 1 to completely avoid 1-frame pop-in
-        ref.current.scale.setScalar(easeOut);
     });
 
     return (
         <>
-            <group ref={ref} position={[0, 0, -50]} scale={[0, 0, 0]}>
+            <group ref={ref} position={[0, 0, -8]}>
                 <EnemyJetMesh type={enemy.type} destroyed={destroyed} onClick={onClick} />
             </group>
             {hasMissile && !destroyed && (
