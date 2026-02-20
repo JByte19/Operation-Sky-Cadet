@@ -81,7 +81,7 @@ const SkySection = ({ active, onNext, jetClicked }: SkySectionProps) => {
             ref={containerRef}
             className="absolute inset-0 flex flex-col items-center justify-center p-8 pointer-events-none opacity-0 invisible z-20"
         >
-            <div className="flex flex-col items-center mt-32 text-center max-w-4xl">
+            <div className="flex flex-col items-center mt-16 md:mt-32 text-center max-w-4xl px-4">
                 <h1
                     ref={text1Ref}
                     className="text-4xl md:text-7xl font-orbitron text-transparent bg-clip-text bg-gradient-to-b from-white to-af-blue uppercase tracking-[0.1em] drop-shadow-[0_0_15px_rgba(93,138,168,0.5)]"
@@ -118,7 +118,7 @@ const SkySection = ({ active, onNext, jetClicked }: SkySectionProps) => {
                 <button
                     ref={btnRef}
                     onClick={onNext}
-                    className="mt-16 pointer-events-auto group px-8 py-3 border border-af-blue/50 text-af-blue font-orbitron text-sm uppercase tracking-widest hover:bg-af-blue/10 transition-colors flex items-center gap-3"
+                    className="mt-12 md:mt-16 pointer-events-auto group px-6 md:px-8 py-3 bg-black/40 backdrop-blur-sm border border-af-blue/40 text-white/80 font-orbitron text-xs md:text-sm uppercase tracking-widest hover:bg-black/70 hover:text-white transition-all flex items-center gap-3 rounded-sm"
                 >
                     <Plane className="w-4 h-4 group-hover:translate-x-1 group-hover:-translate-y-1 transition-transform" />
                     Proceed to Base
