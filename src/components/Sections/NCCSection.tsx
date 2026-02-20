@@ -111,12 +111,12 @@ const NCCSection = ({ active, onNext }: NCCSectionProps) => {
     return (
         <div
             ref={containerRef}
-            className="absolute inset-0 z-20 flex flex-col items-center justify-center bg-navy/80 backdrop-blur-sm opacity-0 invisible pointer-events-none p-4 md:p-12 font-orbitron"
+            className="absolute inset-0 z-20 flex flex-col items-center justify-start lg:justify-center overflow-y-auto lg:overflow-hidden bg-navy/80 backdrop-blur-sm opacity-0 invisible pointer-events-none p-4 md:p-12 font-orbitron"
             style={{
                 backgroundImage: 'radial-gradient(circle at 15% 50%, rgba(255, 215, 0, 0.05) 0%, transparent 50%)' // Subtle dark glow on left
             }}
         >
-            <div className="max-w-7xl w-full grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-16 items-center pointer-events-auto h-full max-h-[800px] relative">
+            <div className="max-w-7xl w-full grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-16 items-center pointer-events-auto h-auto lg:h-full lg:max-h-[800px] relative py-8 lg:py-0">
 
                 {/* Left Side: Rotating Air Wing Badge */}
                 <div className="lg:col-span-5 flex flex-col items-center justify-center pt-10">
